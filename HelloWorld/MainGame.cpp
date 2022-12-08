@@ -7,6 +7,9 @@ int DISPLAY_WIDTH = 640;
 int DISPLAY_HEIGHT = 360;
 int DISPLAY_SCALE = 2;
 
+int frames = 0;
+Snake snake; //test code
+
 // The entry point for a PlayBuffer program
 void MainGameEntry( PLAY_IGNORE_COMMAND_LINE )
 {
@@ -17,8 +20,15 @@ void MainGameEntry( PLAY_IGNORE_COMMAND_LINE )
 bool MainGameUpdate(float elapsedTime)
 {
 	Play::ClearDrawingBuffer( Play::cBlack );
-	SnakePart snake({ DISPLAY_WIDTH / 2, DISPLAY_HEIGHT / 2 }); //test code
-	snake.draw();//test code
+	snake.draw();
+	snake.HandleInput();
+	if (frames % 10 == 0)
+	{
+		snake.move();
+		//snake.AddPart();
+		frames = 0;
+	}
+	frames++;
 	Play::PresentDrawingBuffer();
 	return Play::KeyDown( VK_ESCAPE );
 }
