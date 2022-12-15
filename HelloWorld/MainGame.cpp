@@ -1,6 +1,7 @@
 #define PLAY_IMPLEMENTATION
 #define PLAY_USING_GAMEOBJECT_MANAGER
 #include "Play.h"
+#include "Apple.h"
 #include "SnakePart.h"
 
 int DISPLAY_WIDTH = 640;
