@@ -37,11 +37,10 @@ Snake::Snake()
 	parts[1] = new SnakePart({ 320,190 });
 }
 
-void Snake::AddPart() //WIP
+void Snake::AddPart() 
 {
 	length += 1;
 	SnakePart** newParts = new SnakePart*[length];
-	//memcpy(newParts, parts, sizeof(SnakePart) * (length-1));
 	for (int i = 0; i < length - 1; i++)
 	{
 		newParts[i] = parts[i];
@@ -86,13 +85,33 @@ void Snake::move()
 void Snake::HandleInput()
 {
 	if (Play::KeyDown(VK_UP))
-		heading = North;
+	{
+		if (heading != South)
+		{
+			heading = North;
+		}
+	}
 	if (Play::KeyDown(VK_RIGHT))
-		heading = East;
+	{
+		if(heading != West)
+		{
+			heading = East;
+		}
+	}
 	if (Play::KeyDown(VK_DOWN))
-		heading = South;
+	{
+		if (heading != North)
+		{
+			heading = South;
+		}
+	}
 	if (Play::KeyDown(VK_LEFT))
-		heading = West;
+	{
+		if (heading != East)
+		{
+			heading = West;
+		}
+	}
 }
 
 Snake::~Snake()

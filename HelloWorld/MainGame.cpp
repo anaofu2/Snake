@@ -10,7 +10,7 @@ int DISPLAY_SCALE = 2;
 
 int frames = 0;
 Snake snake; //test code
-
+Apple* apple = new Apple;
 // The entry point for a PlayBuffer program
 void MainGameEntry( PLAY_IGNORE_COMMAND_LINE )
 {
@@ -23,17 +23,18 @@ bool MainGameUpdate(float elapsedTime)
 {
 	Play::ClearDrawingBuffer( Play::cBlack );
 	snake.draw();
+	apple->DrawApple();
 	snake.HandleInput();
 	if (frames % 100 == 0)
 	{
 		snake.AddPart();
 	}
-		if (frames % 10 == 0)
-		{
-		snake.move();
+	if (frames % 10 == 0)
+	{
+	snake.move();
 
 		//frames = 0;
-		}
+	}
 	frames++;
 	Play::PresentDrawingBuffer();
 	return Play::KeyDown( VK_ESCAPE );
@@ -42,6 +43,7 @@ bool MainGameUpdate(float elapsedTime)
 // Gets called once when the player quits the game 
 int MainGameExit( void )
 {
+	delete apple;
 	Play::DestroyManager();
 	return PLAY_OK;
 }
