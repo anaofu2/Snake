@@ -2,7 +2,7 @@
 
 SnakePart::SnakePart(Point2D position)
 {
-	srand(time(0)); //seeds rand() to time to make numbers more random.
+	
 	pos = position;
 	int red = rand() % 100;
 	int green = rand() % 100;
@@ -41,7 +41,11 @@ void Snake::AddPart() //WIP
 {
 	length += 1;
 	SnakePart** newParts = new SnakePart*[length];
-	memcpy(newParts, parts, sizeof(SnakePart) * length-1);
+	//memcpy(newParts, parts, sizeof(SnakePart) * (length-1));
+	for (int i = 0; i < length - 1; i++)
+	{
+		newParts[i] = parts[i];
+	}
 	newParts[length - 1] = new SnakePart(newParts[length - 2]->pos);
 	delete[] parts;
 	parts = newParts;

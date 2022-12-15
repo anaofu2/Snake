@@ -14,6 +14,7 @@ Snake snake; //test code
 void MainGameEntry( PLAY_IGNORE_COMMAND_LINE )
 {
 	Play::CreateManager( DISPLAY_WIDTH, DISPLAY_HEIGHT, DISPLAY_SCALE );
+	srand(time(0)); //seeds rand() to time to make numbers more random.
 }
 
 // Called by PlayBuffer every frame (60 times a second!)
@@ -22,12 +23,16 @@ bool MainGameUpdate(float elapsedTime)
 	Play::ClearDrawingBuffer( Play::cBlack );
 	snake.draw();
 	snake.HandleInput();
-	if (frames % 10 == 0)
+	if (frames % 100 == 0)
 	{
-		snake.move();
-		//snake.AddPart();
-		frames = 0;
+		snake.AddPart();
 	}
+		if (frames % 10 == 0)
+		{
+		snake.move();
+
+		//frames = 0;
+		}
 	frames++;
 	Play::PresentDrawingBuffer();
 	return Play::KeyDown( VK_ESCAPE );
