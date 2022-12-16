@@ -23,17 +23,18 @@ bool MainGameUpdate(float elapsedTime)
 {
 	Play::ClearDrawingBuffer( Play::cBlack );
 	snake.draw();
-	apple->DrawApple();
-	snake.HandleInput();
-	if (frames % 100 == 0)
+	apple->drawApple();
+	snake.handleInput();
+	if (frames % 6 == 0)
 	{
-		snake.AddPart();
+		snake.move();
+		frames = 0;
 	}
-	if (frames % 10 == 0)
+	if (snake.collide(*apple))
 	{
-	snake.move();
-
-		//frames = 0;
+		snake.addPart();
+		delete apple;
+		apple = new Apple;
 	}
 	frames++;
 	Play::PresentDrawingBuffer();

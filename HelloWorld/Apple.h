@@ -1,16 +1,16 @@
 #pragma once
 #include "Play.h"
 
-class Apple {
+class Apple 
+{
 	Point2D posApple;
 	int rad = 5;
 	public:
 		Apple();
-		void DrawApple();
-				
+		void drawApple();
+		Point2D getPos();
+		int getRad();		
 };
-
-//static  //instans av Apple classen
 
 
 

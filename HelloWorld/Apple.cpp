@@ -1,19 +1,24 @@
 #include "Apple.h"
 #include "Play.h"
 
-
-
-Apple::Apple() {
-	//srand(time(0));
-	int x = (rand() % 64) * 10;
-	int y = (rand() % 36) * 10;
-	posApple = {x,y};
-
+Apple::Apple() 
+{	
+	int x = (rand() % 63) * 10 + 5;
+	int y = (rand() % 35) * 10 + 5;
+	posApple = { x,y };
 }
 
-void Apple::DrawApple() {
-
+void Apple::drawApple() 
+{
 	Play::DrawCircle(posApple, rad, Play::cRed);
+}
 
-	
+Point2D Apple::getPos()
+{
+	return posApple;
+}
+
+int Apple::getRad()
+{
+	return rad;
 }

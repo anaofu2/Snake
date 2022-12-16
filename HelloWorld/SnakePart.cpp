@@ -12,7 +12,7 @@ SnakePart::SnakePart(Point2D position)
 
 SnakePart::SnakePart()
 {
-	pos = { 320,180 };
+	pos = { 325,185 };
 }
 
 void SnakePart::draw()
@@ -37,7 +37,7 @@ Snake::Snake()
 	parts[1] = new SnakePart({ 320,190 });
 }
 
-void Snake::AddPart() 
+void Snake::addPart() 
 {
 	length += 1;
 	SnakePart** newParts = new SnakePart*[length];
@@ -82,7 +82,7 @@ void Snake::move()
 	}
 }
 
-void Snake::HandleInput()
+void Snake::handleInput()
 {
 	if (Play::KeyDown(VK_UP))
 	{
@@ -112,6 +112,15 @@ void Snake::HandleInput()
 			heading = West;
 		}
 	}
+}
+
+bool Snake::collide(Apple& apple)
+{
+	int xDiff = apple.getPos().x - head->pos.x;
+	int yDiff = apple.getPos().y - head->pos.y;
+	int radii = apple.getRad() + head->size/2;
+
+	return((xDiff * xDiff) + (yDiff * yDiff) < radii * radii);
 }
 
 Snake::~Snake()

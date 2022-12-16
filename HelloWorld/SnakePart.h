@@ -1,6 +1,6 @@
 #pragma once
 #include "Play.h"
-
+#include "Apple.h"
 enum Heading{North, East, South, West};
 
 class SnakePart
@@ -28,9 +28,10 @@ class Snake
 
 public:
 	Snake();
-	void AddPart();
+	void addPart();
 	void draw();
 	void move();
-	void HandleInput();
+	void handleInput();
+	bool collide(Apple& apple);
 	~Snake();
 };
